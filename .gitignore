@@ -1,0 +1,8 @@
+#node modules
+node_modules/
+
+#bower dependencies directory
+bower_components
+
+#movies
+*.mp4
