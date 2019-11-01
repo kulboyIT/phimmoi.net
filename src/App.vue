@@ -1,76 +1,75 @@
 <template>
   <div id="app">
-    
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
-    <button @click="getMovie">greet</button>
+    <popup></popup>
+    <header-section></header-section>
+    <navigation></navigation>
+    <main-content></main-content>
+    <footer-section></footer-section>
+    <button v-if="loginStatus" title="Đăng xuất" class="logout-btn">
+        <img src="/images/icons/logout-icon.png" alt="">
+    </button>
+    <button v-else title="Đăng nhập" class="login-btn">
+        <img src="http://localhost:3000/images/icons/login-icon.png" alt="">
+    </button>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+  import HeaderSection from './components/headerSection/headerSection';
+  import FooterSection from './components/footerSection/footerSection';
+  import Navigation from './components/navigations/Navigation';
+  import MainContent from './components/mainContent/mainContent';
+  import Popups from './components/popups/popups';
 
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  },
-  methods: {
-    getMovie: function() {
-      axios.get('http://localhost:3000/movie/phim-le', {
-       headers: {
-          // remove headers
-        }
-      }).then(res => {
-        console.log(res);
-      }).catch(err => {
-        console.log(err.response);
+  export default {
+    name: 'app',
+    data () {
+      return {
+        loginStatus: false
+      }
+    },
+    methods: {
+      
+    },
+    components: {
+      'header-section': HeaderSection,
+      'navigation': Navigation,
+      'main-content': MainContent,
+      'footer-section': FooterSection,
+      'popup': Popups
+    },
+    mounted () {
+       try {
+          axios.get(`http://localhost:3000/get-log-in-status`)
+          .then(res => {
+              this.loginStatus = res.data;
+              console.log(res.data);
+          });
+      } catch (error) {
+          console.log(error);
+      }
+
+      $(document).ready(function () {
+        $(this).scrollTop(0);
+        dropdown();
+        carousel();
+        //auto spin carousel
+        setInterval(function () {
+            autoCarousel();
+        }, 7000);
+        getMovieDetails();
+        popUpModals();
+        popDownModals();
+        showHideCommentButton();
+        addNewComment();
+        showHideLoginForm();
+        loginRegisterchange();        
+        logout();
       });
     }
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>

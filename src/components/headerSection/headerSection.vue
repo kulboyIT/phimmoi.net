@@ -1,0 +1,39 @@
+<template>
+    <header id="header-section">
+        <div class="custom-container">
+            <div class="row">
+                <div class="col-md-4 header-logo">
+                    <a href="/">
+                        <img src="http://localhost:3000/images/logos/logo.png" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-8">
+                    <div class="search-widget">
+                        <form action="/search" method="GET">
+                            <input type="text" color="white" placeholder="Tìm: tên phim, đạo diễn, diễn viên" name="keyword">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</template>
+
+<script>
+    export default {
+    name: 'header-section',
+    data () {
+        return {
+        
+        }
+    },
+    methods: {
+        
+    }
+    }
+</script>
+
+<style>
+
+</style>
