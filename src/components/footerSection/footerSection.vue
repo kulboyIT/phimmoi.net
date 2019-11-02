@@ -67,5 +67,37 @@
 </script>
 
 <style>
+    footer {
+        background-color: #000000;
+        color: #fff;
+        width: 100%;
+        padding: 10px 0;
+    }
 
+    footer .cate-title {
+        color: #f7e148;
+        font-size: 1.5rem;
+    }
+
+    footer .cate-list-group,
+    footer .contacts,
+    footer .logo  {
+        margin-left: 10px;
+    }
+
+    footer .logo {
+        width: 120px;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    footer ul{
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    footer .cate-item a{
+        color: #fff;
+        font-size: 1.2rem;
+    }
 </style>

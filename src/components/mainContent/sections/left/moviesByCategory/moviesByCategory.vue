@@ -31,13 +31,14 @@
 <script>
     export default {
         name: 'movie-cate',
-        props: ['category_title', 'category_id'],
+        props: ['category_title', 'category_id', 'limit_numb'],
         data () {
             return {
                 movies: [],
                 getMoviesUrl: '/movie/category',
                 categoryTitle: this.category_title,
-                categoryId: this.category_id
+                categoryId: this.category_id,
+                limit: this.limit_numb
             }
         },
         methods: {
@@ -45,8 +46,9 @@
         },
         mounted() {
             try {
-                axios.get(`http://localhost:3000${this.getMoviesUrl}/${this.categoryId}?limit=8`)
+                axios.get(`http://localhost:3000${this.getMoviesUrl}/${this.categoryId}?limit=${this.limit}`)
                 .then(res => {
+                    console.log(res.data);
                     this.movies = res.data;
                     getMovieDetails();
                 });

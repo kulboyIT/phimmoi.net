@@ -8,7 +8,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 clear">
-                    <left></left>
+                    <left is_home_page='true'></left>
                 </div>
                 <div class="col-lg-4 clear">
                     <right></right>

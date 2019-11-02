@@ -58,5 +58,10 @@
 </script>
 
 <style>
-
+    .main .carousel {
+        width: 100%;
+        height: 330px;
+        background-color: #252525;
+        padding: 10px 20px;
+    }
 </style>
