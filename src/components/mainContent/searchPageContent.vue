@@ -1,14 +1,10 @@
 <template>
-    <div class="main">
+    <div id="movies-
+    page">
         <div class="custom-container">
             <div class="row">
-                <div class="col-lg-12 clear">
-                    <carousel></carousel>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-lg-8 clear">
-                    <left is_home_page='true'></left>
+                    <left is_home_page='false' is_search_page='true'></left>
                 </div>
                 <div class="col-lg-4 clear">
                     <right></right>
@@ -24,9 +20,10 @@
     import Right from './sections/right/right';
 
     export default {
-        name: 'main-content',
+        name: 'movies-page',
         data () {
             return {
+
             }
         },
         methods: {

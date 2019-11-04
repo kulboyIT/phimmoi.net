@@ -47,7 +47,7 @@
             try {
                 axios.get(`http://localhost:3000${this.getMoviesUrl}?limit=16`)
                 .then(res => {
-                    this.movies = res.data;
+                    this.movies = res.data.movies;
                     getMovieDetails();
                 });
             } catch (error) {
@@ -58,7 +58,7 @@
 </script>
 
 <style>
-    .main .carousel {
+    #main .carousel {
         width: 100%;
         height: 330px;
         background-color: #252525;

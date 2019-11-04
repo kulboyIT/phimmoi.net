@@ -57,12 +57,12 @@
             try {
                 axios.get('http://localhost:3000' + this.getMoviesUrl)
                 .then(res => {
-                    this.movies = res.data;
+                    this.movies = res.data.movies;
                     getMovieDetails();
                 });
                 axios.get('http://localhost:3000' + this.getSeriesUrl)
                 .then(res => {
-                    this.series = res.data;
+                    this.series = res.data.movies;
                     getMovieDetails();
                 });
             } catch (error) {

@@ -1,9 +1,14 @@
 <template>
-    <div class="main">
+    <div id="home-page">
         <div class="custom-container">
             <div class="row">
+                <div class="col-lg-12 clear">
+                    <carousel></carousel>
+                </div>
+            </div>
+            <div class="row">   
                 <div class="col-lg-8 clear">
-                    <left is_home_page='false'></left>
+                    <left is_home_page='true' is_search_page='false'></left>
                 </div>
                 <div class="col-lg-4 clear">
                     <right></right>
@@ -19,7 +24,7 @@
     import Right from './sections/right/right';
 
     export default {
-        name: 'main-content',
+        name: 'home-page',
         data () {
             return {
             }

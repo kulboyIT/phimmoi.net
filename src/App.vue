@@ -3,7 +3,7 @@
     <popup></popup>
     <header-section></header-section>
     <navigation></navigation>
-    <router-view></router-view>
+    <main-content></main-content>
     <footer-section></footer-section>
     <button title="Đăng nhập" class="login-btn">
         <img src="http://localhost:3000/images/icons/login-icon.png" alt="">
@@ -16,6 +16,7 @@
   import FooterSection from './components/footerSection/footerSection';
   import Navigation from './components/navigations/Navigation';
   import Popups from './components/popups/popups';
+  import mainContent from './components/mainContent/mainContent';
 
   export default {
     name: 'app',
@@ -31,7 +32,8 @@
       'header-section': HeaderSection,
       'navigation': Navigation,
       'footer-section': FooterSection,
-      'popup': Popups
+      'popup': Popups,
+      'main-content': mainContent
     },
     mounted () {
       $(document).ready(function () {

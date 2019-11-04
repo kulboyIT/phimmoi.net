@@ -5,7 +5,6 @@
         </div>
         <div class="right-box-content nice-scroll">
             <div class="content-wrapper">
-                {{type}}
                 <a 
                     v-for="movie in movies"
                     :key="movie._id"
@@ -51,15 +50,18 @@
             
         },
         mounted() {
+            getMovieDetails();
             try {
                 axios.get(`http://localhost:3000${this.getMoviesUrl}?limit=8`)
                 .then(res => {
-                    this.movies = res.data;
-                    getMovieDetails();
+                    this.movies = res.data.movies;
                 });
             } catch (error) {
                 console.log(error);
             }
+        },
+        updated() {
+            getMovieDetails();
         }
     }
 </script>

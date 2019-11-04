@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="search-widget">
-                        <form action="/search" method="GET">
+                        <form action="/movie/search" method="GET">
                             <input type="text" color="white" placeholder="Tìm: tên phim, đạo diễn, diễn viên" name="keyword">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>

@@ -1,30 +1,31 @@
 <template>
-    <div id="left-section">
-        <div v-if="isHomePage==='true'">
-            <movies-update></movies-update>
-            <movie-cate
-                category_title='hành động'
-                category_id='5dafece519e21943a17739c4'
-                limit_numb='8'>
-            </movie-cate>
-            <movie-cate
-                category_title='kinh dị'
-                category_id='5dafedfcafbe1e491221fe49'
-                limit_numb='8'>
-            </movie-cate>
-            <movie-cate
-                category_title='viễn tưởng'
-                category_id='5dafedfcafbe1e491221fe45'
-                limit_numb='8'>
-            </movie-cate>
-        </div>
-        <div v-else>
-            <movie-cate
-                category_title='viễn tưởng'
-                category_id='5dafedfcafbe1e491221fe45'
-                limit_numb='20'>
-            </movie-cate>
-        </div>
+    <div v-if="isHomePage === 'true'" id="left-section">
+        <movies-update></movies-update>
+        <movie-cate
+            limit_numb='8'
+            is_home_page='true'
+            category_id='5dafece519e21943a17739c4'
+            is_search_page='false'>
+        </movie-cate>
+        <movie-cate
+            limit_numb='8'
+            is_home_page='true'
+            category_id='5dafedfcafbe1e491221fe45'
+            is_search_page='false'>
+        </movie-cate>
+        <movie-cate
+            limit_numb='8'
+            is_home_page='true'
+            category_id='5dafedfcafbe1e491221fe49'
+            is_search_page='false'>
+        </movie-cate>
+    </div>
+    <div v-else id="left-section">
+        <movie-cate
+            limit_numb='20'
+            is_home_page='false'
+            :is_search_page='isSearchPage'>
+        </movie-cate>
     </div>
 </template>
 
@@ -34,10 +35,11 @@
 
     export default {
         name: 'left-section',
-        props: ['is_home_page'],
+        props: ['is_home_page', 'is_search_page'],
         data () {
             return {
-                isHomePage: this.is_home_page
+                isHomePage: this.is_home_page,
+                isSearchPage: this.is_search_page
             }
         },
         methods: {  

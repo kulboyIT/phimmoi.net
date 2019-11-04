@@ -1,27 +1,33 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Homepage from '../components/mainContent/homePage';
-import Moviepage from '../components//mainContent/moviePage';
+import homePageContent from '../components/mainContent/homePageContent';
+import moviesPageContent from '../components/mainContent/moviesPageContent';
+import searchPageContent from '../components/mainContent/searchPageContent';
 
 Vue.use(Router);
 
 export default new Router({
     mode: "history",
     routes: [
-       {
+        {
            path: '/',
-           component: Homepage,
-           name: 'Home'
-       },
-       {
-            path: '/movie/:type',
-            component: Moviepage,
-            name: 'MoviesByType'
+           component: homePageContent,
+           name: 'HomePage'
         },
         {
-            path: '/movie/category/:categoryId',
-            component: Moviepage,
-            name: 'MoviesByCatagoryId'
+            path: '/movie/search',
+            component: searchPageContent,
+            name: 'SearchPage'
+        },
+        {
+            path: '/movie/:moviesType',
+            component: moviesPageContent,
+            name: 'moviesByTypePage'
+        },
+        {
+            path: '/movie/:filterType/:typeId',
+            component: moviesPageContent,
+            name: 'moviesFilteredPage'
         }
     ]
 })
