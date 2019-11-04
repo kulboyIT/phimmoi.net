@@ -42,13 +42,12 @@
             }
         },
         methods: {
-            
+
         },
         mounted() {
             try {
                 axios.get(`http://localhost:3000${this.getMoviesUrl}/${this.categoryId}?limit=${this.limit}`)
                 .then(res => {
-                    console.log(res.data);
                     this.movies = res.data;
                     getMovieDetails();
                 });

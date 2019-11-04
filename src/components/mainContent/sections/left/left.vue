@@ -40,7 +40,7 @@
                 isHomePage: this.is_home_page
             }
         },
-        methods: {
+        methods: {  
             
         },
         components: {
