@@ -1,44 +1,31 @@
 <template>
     <div class="tab-content nice-scroll">
         <div id="list1" class="tab-pane active">
-            <a 
+            <movie-item-sm
                 v-for="movie in movies"
                 :key="movie._id"
-                href="#" 
-                :data-target="movie._id"
-                class="movie-detail-link">
-                <div class="movie-link movie-thumb-sm">
-                    <img class="figure" :src="'http://localhost:3000'+movie.thumbnail" :alt="movie.title_vn">
-                    <div class="movie-info">
-                        <p class="movie-title-vn">{{movie.title_vn}}</p>
-                        <p class="movie-title-en">{{movie.title_en}}</p>
-                    </div>
-                    <div class="time">{{movie.time}} phút</div>
-                </div>
-            </a>
+                :movie_id="movie._id"
+                :thumbnail="movie.thumbnail"
+                :time="movie.time"
+                :title_vn="movie.title_vn"
+                :title_en="movie.title_en"></movie-item-sm>
         </div>
         <div id="list2" class="tab-pane fade">
-            <a 
+            <movie-item-sm
                 v-for="movie in series"
                 :key="movie._id"
-                href="#" 
-                :data-target="movie._id"
-                class="movie-detail-link">
-                <div class="movie-link movie-thumb-sm">
-                    <img class="figure" :src="'http://localhost:3000'+movie.thumbnail" :alt="movie.title_vn">
-                    <div class="movie-info">
-                        <p class="movie-title-vn">{{movie.title_vn}}</p>
-                        <p class="movie-title-en">{{movie.title_en}}</p>
-                    </div>
-                    <div class="time">{{movie.time}} phút</div>
-                </div>
-            </a>
+                :movie_id="movie._id"
+                :thumbnail="movie.thumbnail"
+                :time="movie.time"
+                :title_vn="movie.title_vn"
+                :title_en="movie.title_en"></movie-item-sm>
         </div>
     </div>
 </template>
 
 <script>
     import axios from 'axios';
+    import movieItemSmall from '../../../../movieItem/movieItemSmall';
 
     export default {
         name: 'movies-tab',
@@ -52,6 +39,9 @@
         },
         methods: {
             
+        },
+        components: {
+            'movie-item-sm': movieItemSmall
         },
         mounted() {
             try {
