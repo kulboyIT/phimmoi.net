@@ -10,7 +10,8 @@
                         v-for="category in categories"
                         :key="category._id"
                         class="dropdown-item">
-                            <a :href="`/movie/category/`+category._id">
+                            <a href="#"
+                                @click="$emit('changeUrl', `/movie/category/${category._id}`)">
                                 {{category.title}}
                             </a>
                         </li>    
@@ -18,21 +19,19 @@
                 </li>
                 <li class="nav-item"><a href="#" class="nav-link">QUỐC GIA</a>
                     <ul class="dropdown-list countries">
-                        <!-- <% countries.forEach(function(country) { %>
-                            <li class="dropdown-item"><a href="/country/<%=country._id%>"><%= country.title %></a></li>
-                        <% }) %> -->
                         <li 
                         v-for="country in countries"
                         :key="country._id"
                         class="dropdown-item">
-                            <a :href="`/movie/country/`+country._id">
+                            <a href="#"
+                                @click="$emit('changeUrl',`/movie/country/${country._id}`)">
                                 {{country.title}}
                             </a>
                         </li>  
                     </ul>
                 </li>
-                <li class="nav-item"><a :href="getMoviesUrl" class="nav-link">PHIM LẺ</a></li>
-                <li class="nav-item"><a :href="getSeriesUrl" class="nav-link">PHIM BỘ</a></li>
+                <li class="nav-item"><a href="#" @click="$emit('changeUrl',`/movie/movies`)" class="nav-link">PHIM LẺ</a></li>
+                <li class="nav-item"><a href="#" @click="$emit('changeUrl',`/movie/series`)" class="nav-link">PHIM BỘ</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">PHIM THUYẾT MINH</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">PHIM CHIẾU RẠP</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">TRAILER</a></li>
@@ -60,7 +59,7 @@
         methods: {
             
         },
-        mounted() {
+        created() {
             try {
                 axios.get('http://localhost:3000' + this.getCategoriesUrl)
                 .then(res => {

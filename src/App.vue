@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <popup></popup>
-    <header-section></header-section>
-    <navigation></navigation>
-    <main-content></main-content>
+    <header-section @changeUrl='changeUrl'></header-section>
+    <navigation @changeUrl='changeUrl'></navigation>
+    <main-content :url="url"></main-content>
     <footer-section></footer-section>
     <button title="Đăng nhập" class="login-btn">
         <img src="http://localhost:3000/images/icons/login-icon.png" alt="">
@@ -22,11 +22,13 @@
     name: 'app',
     data () {
       return {
-        
+        url: '/'
       }
     },
     methods: {
-      
+      changeUrl(url) {
+        this.url = url;
+      }
     },
     components: {
       'header-section': HeaderSection,

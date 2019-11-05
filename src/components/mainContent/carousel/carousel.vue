@@ -10,20 +10,14 @@
                 <span class="arrow-icon"></span>
             </a>
             <div class="top-movie-wrapper">
-                <a href="#"
+                <movie-item-bg
                     v-for="movie in movies"
                     :key="movie._id"
-                    :data-target="movie._id"
-                    class="movie-detail-link">
-                    <div class="movie-link movie-thumb-big" :title="movie.title_vn">
-                        <img class="thumb-bg" :src="'http://localhost:3000'+movie.thumbnail" :alt="movie.title_vn">
-                        <div class="movie-info">
-                            <div class="movie-title-vn">{{movie.title_vn}}</div>
-                            <div class="movie-title-en">{{movie.title_en}}</div>
-                        </div>
-                        <div class="time">{{movie.time}} phút</div>
-                    </div>
-                </a>
+                    :movie_id="movie._id"
+                    :thumbnail="movie.thumbnail"
+                    :time="movie.time"
+                    :title_vn="movie.title_vn"
+                    :title_en="movie.title_en"></movie-item-bg>
             </div>
         </div>
     </div>
@@ -31,6 +25,7 @@
 
 <script>
     import axios from 'axios';
+    import movieItemBig from '../../movieItem/movieItemBig';
 
     export default {
         name: 'carousel',
@@ -43,7 +38,10 @@
         methods: {
             
         },
-        mounted() {
+        components: {
+            'movie-item-bg': movieItemBig
+        },
+        created() {
             try {
                 axios.get(`http://localhost:3000${this.getMoviesUrl}?limit=16`)
                 .then(res => {
