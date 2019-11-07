@@ -51,7 +51,7 @@
             if (this.isHomePage === 'true') {
                 this.getMoviesUrl = `http://localhost:3000/movie/category/${this.categoryId}?limit=${this.limit}`;
             } else if(this.isSearchPage === 'true') {
-                this.getMoviesUrl = `http://localhost:3000${this.$route.path}?keyword=${this.$route.query.keyword}&limit=${this.limit}`;
+                this.getMoviesUrl = `http://localhost:3000/movie/search?keyword=${this.$route.query.keyword}&limit=${this.limit}`;
             } else {
                 this.getMoviesUrl = `http://localhost:3000${this.$route.path}?limit=${this.limit}`;
             }
@@ -71,7 +71,7 @@
             if (this.isHomePage === 'true') {
                 this.getMoviesUrl = `http://localhost:3000/movie/category/${this.categoryId}?limit=${this.limit}`;
             } else if(this.isSearchPage === 'true') {
-                this.getMoviesUrl = `http://localhost:3000${this.$route.path}?keyword=${this.$route.query.keyword}&limit=${this.limit}`;
+                this.getMoviesUrl = `http://localhost:3000/movie/search?keyword=${this.$route.query.keyword}&limit=${this.limit}`;
             } else {
                 this.getMoviesUrl = `http://localhost:3000${this.$route.path}?limit=${this.limit}`;
             }

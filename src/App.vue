@@ -1,12 +1,15 @@
 <template>
   <div id="app">
-    <popup></popup>
+    <popup @changeAuthStatus="changeAuthStatus"></popup>
     <header-section @changeUrl='changeUrl'></header-section>
     <navigation @changeUrl='changeUrl'></navigation>
     <main-content :url="url"></main-content>
     <footer-section></footer-section>
-    <button title="Đăng nhập" class="login-btn">
+    <button v-if="!isAuthenticated" title="Đăng nhập" class="login-btn" @click.prevent="openLoginRegisterForm">
         <img src="http://localhost:3000/images/icons/login-icon.png" alt="">
+    </button>
+    <button v-else title="Đăng xuất" class="logout-btn" @click.prevent="logout">
+        <img src="http://localhost:3000/images/icons/logout-icon.png" alt="">
     </button>
   </div>
 </template>
@@ -19,15 +22,30 @@
   import mainContent from './components/mainContent/mainContent';
 
   export default {
-    name: 'app',
+    name: 'App',
     data () {
       return {
-        url: '/'
+        url: '/',
+        isAuthenticated: false
       }
     },
     methods: {
       changeUrl(url) {
         this.url = url;
+      },
+      changeAuthStatus() {
+        this.isAuthenticated = !this.isAuthenticated;
+      },
+      logout() {
+        this.changeAuthStatus();
+        $.get('http://localhost:3000/logout', function(data) {
+            console.log("da log out");
+        });
+      },
+      openLoginRegisterForm() {
+        $('.pop-up-login').show();
+        $('.pop-up-login').find('.login-form').show();
+        $('.pop-up-login').find('.register-form').hide();
       }
     },
     components: {
@@ -38,14 +56,7 @@
       'main-content': mainContent
     },
     mounted () {
-      $(document).ready(function () {
-        $(this).scrollTop(0);
-        dropdown();
-        carousel();
-        //auto spin carousel
-        setInterval(function () {
-            autoCarousel();
-        }, 7000);
+        $(document).scrollTop(0); 
         getMovieDetails();
         popUpModals();
         popDownModals();
@@ -54,7 +65,9 @@
         showHideLoginForm();
         loginRegisterchange();        
         logout();
-      });
+        $.get('http://localhost:3000/get-log-in-status', function(res) {
+          console.log(res);
+        })
     }
   }
 </script>

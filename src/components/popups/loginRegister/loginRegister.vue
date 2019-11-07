@@ -6,7 +6,7 @@
                 Đăng ký
             </div>
             <register-form></register-form>
-            <login-form></login-form>
+            <login-form @changeAuthStatus="changeAuthStatus"></login-form>
         </div>
         <div class="pop-up-bg"></div>
     </div>
@@ -18,13 +18,17 @@
 
   export default {
     name: 'login-register',
+    props: ['is_authenticated'],
     data () {
       return {
-        
+        isAuthenticated: this.is_authenticated
       }
     },
     methods: {
-      
+      changeAuthStatus() {
+        this.isAuthenticated = !this.isAuthenticated;
+        this.$emit('changeAuthStatus');
+      }
     },
     components: {
         'login-form': LoginForm,

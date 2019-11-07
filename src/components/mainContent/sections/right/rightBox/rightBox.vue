@@ -36,14 +36,15 @@
     import axios from 'axios';
 
     export default {
-        name: 'carousel',
+        name: 'RightBox',
         props: ['list_title', 'list_type', 'list_url'],
         data () {
             return {
                 movies: [],
                 getMoviesUrl: this.list_url,
                 title: this.list_title,
-                type: this.list_type
+                type: this.list_type,
+                limit: 8
             }
         },
         methods: {
@@ -52,12 +53,12 @@
         mounted() {
             getMovieDetails();
             try {
-                axios.get(`http://localhost:3000${this.getMoviesUrl}?limit=8`)
+                axios.get(`http://localhost:3000${this.getMoviesUrl}?limit=${this.limit}`)
                 .then(res => {
                     this.movies = res.data.movies;
                 });
             } catch (error) {
-                console.log(error);
+                console.log(error); 
             }
         },
         updated() {

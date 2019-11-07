@@ -11,7 +11,7 @@
                         :key="category._id"
                         class="dropdown-item">
                             <a href="#"
-                                @click="$emit('changeUrl', `/movie/category/${category._id}`)">
+                                @click.prevent="$emit('changeUrl', `/movie/category/${category._id}`)">
                                 {{category.title}}
                             </a>
                         </li>    
@@ -24,18 +24,18 @@
                         :key="country._id"
                         class="dropdown-item">
                             <a href="#"
-                                @click="$emit('changeUrl',`/movie/country/${country._id}`)">
+                                @click.prevent="$emit('changeUrl',`/movie/country/${country._id}`)">
                                 {{country.title}}
                             </a>
                         </li>  
                     </ul>
                 </li>
-                <li class="nav-item"><a href="#" @click="$emit('changeUrl',`/movie/movies`)" class="nav-link">PHIM LẺ</a></li>
-                <li class="nav-item"><a href="#" @click="$emit('changeUrl',`/movie/series`)" class="nav-link">PHIM BỘ</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">PHIM THUYẾT MINH</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">PHIM CHIẾU RẠP</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">TRAILER</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">TOP IMDB 2018</a></li>
+                <li class="nav-item"><a href="#" @click.prevent="$emit('changeUrl',`/movie/movies`)" class="nav-link">PHIM LẺ</a></li>
+                <li class="nav-item"><a href="#" @click.prevent="$emit('changeUrl',`/movie/series`)" class="nav-link">PHIM BỘ</a></li>
+                <li class="nav-item"><a href="#" @click.prevent="" class="nav-link">PHIM THUYẾT MINH</a></li>
+                <li class="nav-item"><a href="#" @click.prevent="" class="nav-link">PHIM CHIẾU RẠP</a></li>
+                <li class="nav-item"><a href="#" @click.prevent="" class="nav-link">TRAILER</a></li>
+                <li class="nav-item"><a href="#" @click.prevent="" class="nav-link">TOP IMDB 2018</a></li>
             </ul>
         </div>
     </div>
@@ -72,6 +72,9 @@
             } catch (error) {
                 console.log(error);
             }
+        },
+        mounted() {
+            dropdown();
         }
     }
 </script>

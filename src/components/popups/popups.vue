@@ -1,6 +1,6 @@
 <template>
   <div id="pop-ups">
-    <login-register-popup></login-register-popup>
+    <login-register-popup v-show="!isAuthenticated" @changeAuthStatus="changeAuthStatus"></login-register-popup>
     <movie-detail-popup></movie-detail-popup>
   </div>
 </template>
@@ -11,10 +11,18 @@ import MovieDetail from "./movieDetail/movieDetail";
 
 export default {
   name: "pop-ups",
+  props: ['is_authenticated'],
   data() {
-    return {};
+    return {
+      isAuthenticated: this.is_authenticated
+    };
   },
-  methods: {},
+  methods: {
+    changeAuthStatus() {
+      this.isAuthenticated = !this.isAuthenticated;
+      this.$emit('changeAuthStatus');
+    }
+  },
   components: {
     "login-register-popup": LoginRegisterPopup,
     "movie-detail-popup": MovieDetail
