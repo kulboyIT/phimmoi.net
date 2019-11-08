@@ -51,6 +51,13 @@
             } catch (error) {
                 console.log(error);
             }
+        },
+        mounted() {
+            carousel();
+            //auto spin carousel
+            setInterval(function () {
+                autoCarousel();
+            }, 7000);
         }
     }
 </script>

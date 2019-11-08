@@ -6,7 +6,7 @@
                 Đăng ký
             </div>
             <register-form></register-form>
-            <login-form></login-form>
+            <login-form @changeAuthStatus="changeAuthStatus"></login-form>
         </div>
         <div class="pop-up-bg"></div>
     </div>
@@ -20,11 +20,13 @@
     name: 'login-register',
     data () {
       return {
-        
+
       }
     },
     methods: {
-      
+      changeAuthStatus() {
+        this.$emit('changeAuthStatus');
+      }
     },
     components: {
         'login-form': LoginForm,

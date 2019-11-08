@@ -6,7 +6,12 @@
                 <movie-info-tabs></movie-info-tabs>
             </div>
             <div class="col-lg-4 nice-scroll">
-                <comment-list></comment-list>
+                <comment-list
+                    :is_authenticated="is_authenticated"
+                    :user_id="user_id"
+                    :user_first_name="user_first_name"
+                    :user_last_name="user_last_name"
+                    :user_avatar="user_avatar"></comment-list>
             </div>
         </div>
 
@@ -21,6 +26,7 @@
 
     export default {
         name: 'movie-detail-popup',
+        props: ['is_authenticated','user_id', 'user_first_name', 'user_last_name', 'user_avatar'],
         data () {
             return {
                 

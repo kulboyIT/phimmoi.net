@@ -13,7 +13,7 @@
         props: ['url'],
         data () {
             return {
-                isHomePage: true
+                
             }
         },
         router: router,
