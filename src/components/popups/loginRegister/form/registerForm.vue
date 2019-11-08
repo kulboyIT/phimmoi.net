@@ -37,7 +37,7 @@
 
 <script>
   export default {
-    name: 'login-form',
+    name: 'register-form',
     data () {
       return {
         

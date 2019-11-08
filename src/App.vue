@@ -1,6 +1,13 @@
 <template>
   <div id="app">
-    <popup @changeAuthStatus="changeAuthStatus"></popup>
+    <popup  
+      @changeAuthStatus="changeAuthStatus"
+      @updateCurrentUser="updateCurrentUser"
+      :is_authenticated="isAuthenticated"
+      :user_id="userId"
+      :user_first_name="userFirstName"
+      :user_last_name="userLastName"
+      :user_avatar="userAvatar"></popup>
     <header-section @changeUrl='changeUrl'></header-section>
     <navigation @changeUrl='changeUrl'></navigation>
     <main-content :url="url"></main-content>
@@ -20,13 +27,18 @@
   import Navigation from './components/navigations/Navigation';
   import Popups from './components/popups/popups';
   import mainContent from './components/mainContent/mainContent';
+  import jwtDecode from 'jwt-decode';
 
   export default {
     name: 'App',
     data () {
       return {
         url: '/',
-        isAuthenticated: false
+        isAuthenticated: false,
+        userFirstName: '',
+        userLastName: '',
+        userAvatar: '',
+        userId: ''
       }
     },
     methods: {
@@ -36,10 +48,25 @@
       changeAuthStatus() {
         this.isAuthenticated = !this.isAuthenticated;
       },
+      updateCurrentUser() {
+        if(localStorage.getItem('usertoken') === null) {
+          this.isAuthenticated = false;
+        } else {
+          let token = localStorage.usertoken;
+          let decoded = jwtDecode(token);
+
+          this.userFirstName = decoded.first_name;
+          this.userLastName = decoded.last_name;
+          this.userAvatar = decoded.avatar;
+          this.userId =decoded.id;
+          this.isAuthenticated = true;
+        }
+      },
       logout() {
         this.changeAuthStatus();
+        localStorage.removeItem('usertoken');
         $.get('http://localhost:3000/logout', function(data) {
-            console.log("da log out");
+            alert('Đăng xuất thành công!!!');
         });
       },
       openLoginRegisterForm() {
@@ -55,6 +82,20 @@
       'popup': Popups,
       'main-content': mainContent
     },
+    created() {
+      if(localStorage.getItem('usertoken') === null) {
+        this.isAuthenticated = false;
+      } else {
+        let token = localStorage.usertoken;
+        let decoded = jwtDecode(token);
+
+        this.userFirstName = decoded.first_name;
+        this.userLastName = decoded.last_name;
+        this.userAvatar = decoded.avatar;
+        this.userId =decoded.id;
+        this.isAuthenticated = true;
+      }
+    },
     mounted () {
         $(document).scrollTop(0); 
         getMovieDetails();
@@ -65,9 +106,6 @@
         showHideLoginForm();
         loginRegisterchange();        
         logout();
-        $.get('http://localhost:3000/get-log-in-status', function(res) {
-          console.log(res);
-        })
     }
   }
 </script>

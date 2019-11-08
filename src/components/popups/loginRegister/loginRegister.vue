@@ -18,15 +18,13 @@
 
   export default {
     name: 'login-register',
-    props: ['is_authenticated'],
     data () {
       return {
-        isAuthenticated: this.is_authenticated
+
       }
     },
     methods: {
       changeAuthStatus() {
-        this.isAuthenticated = !this.isAuthenticated;
         this.$emit('changeAuthStatus');
       }
     },

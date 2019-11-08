@@ -18,26 +18,30 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
   export default {
     name: 'login-form',
     data () {
       return {
-        usernameInput: 'asdfasdf',
-        passwordInput: 'nguchua'
+        usernameInput: '',
+        passwordInput: ''
       }
     },
     methods: {
       login() {
-        let vueObj = this;
+        let self = this;
         $.post('http://localhost:3000/login', {
           username: this.usernameInput, 
           password: this.passwordInput 
         },
         function(res) {
-          console.log(res);
-          if(res.done) {
-            vueObj.$emit('changeAuthStatus');
+          if(res.success) {
+            localStorage.setItem('usertoken', res.data);
+            self.$parent.$parent.$emit('changeAuthStatus');
+            self.$parent.$parent.$emit('updateCurrentUser');
           }
+          alert(res.message);
         });
       }
     }
