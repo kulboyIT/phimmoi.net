@@ -44,8 +44,9 @@
                 old_element.parentNode.replaceChild(new_element, old_element);
 
                 document.getElementById('search-btn').addEventListener('click', function(e) {
-                    vueObj.searchKeyword = document.getElementById('search-input').value;
+                    vueObj.searchKeyword = document.getElementById('search-input').value.trim();
                     e.preventDefault();
+                    if(vueObj.searchKeyword === "") return false;
                     vueObj.$emit('changeUrl', `/movie/search?keyword=${vueObj.searchKeyword}`);
                     document.getElementById('search-btn').click();
                 });
@@ -53,7 +54,8 @@
                 document.getElementById('search-input').addEventListener('keypress', function(e) {
                     if (e.which === 13) {
                         e.preventDefault();
-                        vueObj.searchKeyword = document.getElementById('search-input').value;
+                        vueObj.searchKeyword = document.getElementById('search-input').value.trim();
+                        if(vueObj.searchKeyword === "") return false;
                         vueObj.$emit('changeUrl', `/movie/search?keyword=${vueObj.searchKeyword}`);
                     }
                 });
