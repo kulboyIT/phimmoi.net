@@ -104,8 +104,7 @@
         showHideCommentButton();
         addNewComment();
         showHideLoginForm();
-        loginRegisterchange();        
-        logout();
+        loginRegisterchange();    
     }
   }
 </script>

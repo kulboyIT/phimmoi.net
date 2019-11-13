@@ -31,9 +31,14 @@
     methods: {
       login() {
         let self = this;
+        let isAuthenticated = false;
+        if (localStorage.getItem('usertoken') === null) {
+          isAuthenticated = false;
+        } else isAuthenticated = true;
         $.post('http://localhost:3000/login', {
           username: this.usernameInput, 
-          password: this.passwordInput 
+          password: this.passwordInput,
+          isAuthenticated: isAuthenticated
         },
         function(res) {
           if(res.success) {
