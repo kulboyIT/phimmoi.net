@@ -46,7 +46,7 @@
             self.$parent.$parent.$emit('changeAuthStatus');
             self.$parent.$parent.$emit('updateCurrentUser');
           }
-          alert(res.message);
+          //alert(res.message);
         });
       }
     }
