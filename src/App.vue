@@ -66,7 +66,7 @@
         this.changeAuthStatus();
         localStorage.removeItem('usertoken');
         $.get('http://localhost:3000/logout', function(data) {
-            alert('Đăng xuất thành công!!!');
+            //alert('Đăng xuất thành công!!!');
         });
       },
       openLoginRegisterForm() {
