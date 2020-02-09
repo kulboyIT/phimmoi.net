@@ -36,7 +36,7 @@
           isAuthenticated = false;
         } else isAuthenticated = true;
         $.post('http://localhost:3000/login', {
-          username: this.usernameInput, 
+          username: this.usernameInput,
           password: this.passwordInput,
           isAuthenticated: isAuthenticated
         },
@@ -46,7 +46,7 @@
             self.$parent.$parent.$emit('changeAuthStatus');
             self.$parent.$parent.$emit('updateCurrentUser');
           }
-          //alert(res.message);
+          alert(res.message);
         });
       }
     }
